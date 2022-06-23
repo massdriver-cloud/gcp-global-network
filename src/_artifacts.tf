@@ -2,7 +2,6 @@
 resource "massdriver_artifact" "network" {
   field                = "network"
   provider_resource_id = google_compute_network.main.id
-  type                 = "gcp-global-network"
   name                 = "Global Network ${var.md_metadata.name_prefix} (${google_compute_network.main.id})"
   artifact = jsonencode(
     {
