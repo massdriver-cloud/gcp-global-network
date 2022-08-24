@@ -37,57 +37,224 @@ Our bundles aren't intended to be used locally, outside of testing. Instead, our
 
 Bundles are the basic building blocks of infrastructure, applications, and architectures in [Massdriver][website]. Read more [here](https://docs.massdriver.cloud/concepts/bundles).
 
-## Security & Compliance
-
-<!-- COMPLIANCE:START -->
-
-Security and compliance scanning of our bundles is performed using [Bridgecrew](https://www.bridgecrew.cloud/). Massdriver also offers security and compliance scanning of operational infrastructure configured and deployed using the platform.
-
-| Benchmark | Description |
-|--------|---------------|
-| [![Infrastructure Security](https://www.bridgecrew.cloud/badges/github/massdriver-cloud/gcp-global-network/general)](https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=massdriver-cloud%2Fgcp-global-network&benchmark=INFRASTRUCTURE+SECURITY) | Infrastructure Security Compliance |
-| [![CIS GCP](https://www.bridgecrew.cloud/badges/github/massdriver-cloud/gcp-global-network/cis_gcp)](https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=massdriver-cloud%2Fgcp-global-network&benchmark=CIS+GCP+V1.1) | Center for Internet Security, GCP Compliance |
-| [![PCI-DSS](https://www.bridgecrew.cloud/badges/github/massdriver-cloud/gcp-global-network/pci)](https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=massdriver-cloud%2Fgcp-global-network&benchmark=PCI-DSS+V3.2) | Payment Card Industry Data Security Standards Compliance |
-| [![NIST-800-53](https://www.bridgecrew.cloud/badges/github/massdriver-cloud/gcp-global-network/nist)](https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=massdriver-cloud%2Fgcp-global-network&benchmark=NIST-800-53) | National Institute of Standards and Technology Compliance |
-| [![ISO27001](https://www.bridgecrew.cloud/badges/github/massdriver-cloud/gcp-global-network/iso)](https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=massdriver-cloud%2Fgcp-global-network&benchmark=ISO27001) | Information Security Management System, ISO/IEC 27001 Compliance |
-| [![SOC2](https://www.bridgecrew.cloud/badges/github/massdriver-cloud/gcp-global-network/soc2)](https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=massdriver-cloud%2Fgcp-global-network&benchmark=SOC2)| Service Organization Control 2 Compliance |
-| [![CIS GCP](https://www.bridgecrew.cloud/badges/github/massdriver-cloud/gcp-global-network/cis_gcp)](https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=massdriver-cloud%2Fgcp-global-network&benchmark=CIS+GCP+V1.1) | Center for Internet Security, GCP Compliance |
-| [![HIPAA](https://www.bridgecrew.cloud/badges/github/massdriver-cloud/gcp-global-network/hipaa)](https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=massdriver-cloud%2Fgcp-global-network&benchmark=HIPAA) | Health Insurance Portability and Accountability Compliance |
-
-<!-- COMPLIANCE:END -->
-
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
-
 ## Bundle
 
 ### Params
 
-<!-- PARAMS:START -->
+Form input parameters for configuring a bundle for deployment.
 
-**Params coming soon**
+<details>
+<summary>View</summary>
+
+<!-- PARAMS:START -->
+## Properties
+
+- **`private_service_connect_ip`** *(string)*: Internal IP address to use for accessing Google APIs, such as CloudFunctions, GCR or Cloud Storage, privately instead of over the internet via public IPs. This IP cannot conflict with any existing subnets or peered networks. More info: https://cloud.google.com/vpc/docs/configure-private-service-connect-apis. Default: `10.127.255.255`.
+
+  Examples:
+  ```json
+  "0.0.0.0"
+  ```
+
+  ```json
+  "8.8.8.8"
+  ```
+
+  ```json
+  "127.0.0.1"
+  ```
+
+- **`private_services_access_cidr`** *(string)*: CIDR range to deploy GCP services to. This range cannot be used for any other purpose and cannot conflict with existing subnets or peered networks. This range is used by Google to deploy services like MemoryStore and CloudSQL without requiring individual peering connections per instance. More info: https://cloud.google.com/vpc/docs/private-services-access. Default: `10.127.0.0/17`.
+
+  Examples:
+  ```json
+  "10.100.0.0/16"
+  ```
+
+  ```json
+  "192.24.12.0/22"
+  ```
+
+## Examples
+
+  ```json
+  {
+      "__name": "Private",
+      "private_service_connect_ip": "10.127.255.255",
+      "private_services_access_cidr": "10.127.0.0/17"
+  }
+  ```
 
 <!-- PARAMS:END -->
 
+</details>
+
 ### Connections
 
+Connections from other bundles that this bundle depends on.
+
+<details>
+<summary>View</summary>
+
 <!-- CONNECTIONS:START -->
+## Properties
 
-**Connections coming soon**
+- **`gcp_authentication`** *(object)*: GCP Service Account. Cannot contain additional properties.
+  - **`data`** *(object)*
+    - **`auth_provider_x509_cert_url`** *(string)*: Auth Provider x509 Certificate URL. Default: `https://www.googleapis.com/oauth2/v1/certs`.
 
+      Examples:
+      ```json
+      "https://example.com/some/path"
+      ```
+
+      ```json
+      "https://massdriver.cloud"
+      ```
+
+    - **`auth_uri`** *(string)*: Auth URI. Default: `https://accounts.google.com/o/oauth2/auth`.
+
+      Examples:
+      ```json
+      "https://example.com/some/path"
+      ```
+
+      ```json
+      "https://massdriver.cloud"
+      ```
+
+    - **`client_email`** *(string)*: Service Account Email.
+
+      Examples:
+      ```json
+      "jimmy@massdriver.cloud"
+      ```
+
+      ```json
+      "service-account-y@gmail.com"
+      ```
+
+    - **`client_id`** *(string)*: .
+    - **`client_x509_cert_url`** *(string)*: Client x509 Certificate URL.
+
+      Examples:
+      ```json
+      "https://example.com/some/path"
+      ```
+
+      ```json
+      "https://massdriver.cloud"
+      ```
+
+    - **`private_key`** *(string)*: .
+    - **`private_key_id`** *(string)*: .
+    - **`project_id`** *(string)*: .
+    - **`token_uri`** *(string)*: Token URI. Default: `https://oauth2.googleapis.com/token`.
+
+      Examples:
+      ```json
+      "https://example.com/some/path"
+      ```
+
+      ```json
+      "https://massdriver.cloud"
+      ```
+
+    - **`type`** *(string)*: . Default: `service_account`.
+  - **`specs`** *(object)*
+    - **`gcp`** *(object)*: .
+      - **`project`** *(string)*
+      - **`region`** *(string)*: GCP region. Must be one of: `['us-east1', 'us-east4', 'us-west1', 'us-west2', 'us-west3', 'us-west4', 'us-central1']`.
+
+        Examples:
+        ```json
+        "us-west2"
+        ```
+
+      - **`resource`** *(string)*
+      - **`service`** *(string)*
+      - **`zone`** *(string)*: GCP Zone.
+
+        Examples:
 <!-- CONNECTIONS:END -->
+
+</details>
 
 ### Artifacts
 
+Resources created by this bundle that can be connected to other bundles.
+
+<details>
+<summary>View</summary>
+
 <!-- ARTIFACTS:START -->
+## Properties
 
-**Artifacts coming soon**
+- **`network`** *(object)*: . Cannot contain additional properties.
+  - **`data`** *(object)*
+    - **`grn`** *(string)*: GCP Resource Name (GRN).
 
+      Examples:
+      ```json
+      "projects/my-project/global/networks/my-global-network"
+      ```
+
+      ```json
+      "projects/my-project/regions/us-west2/subnetworks/my-subnetwork"
+      ```
+
+      ```json
+      "projects/my-project/topics/my-pubsub-topic"
+      ```
+
+      ```json
+      "projects/my-project/subscriptions/my-pubsub-subscription"
+      ```
+
+      ```json
+      "projects/my-project/locations/us-west2/instances/my-redis-instance"
+      ```
+
+      ```json
+      "projects/my-project/locations/us-west2/clusters/my-gke-cluster"
+      ```
+
+    - **`private_service_connect_ip`** *(string)*: IP address of the Private Service Connect endpoint.
+    - **`private_services_access`** *(object)*
+      - **`cidr`** *(string)*: CIDR range of the Private Services Access block.
+
+        Examples:
+        ```json
+        "10.100.0.0/16"
+        ```
+
+        ```json
+        "192.24.12.0/22"
+        ```
+
+      - **`name`** *(string)*: Name of the Private Services Access block.
+  - **`specs`** *(object)*
+    - **`gcp`** *(object)*: .
+      - **`project`** *(string)*
+      - **`region`** *(string)*: GCP region. Must be one of: `['us-east1', 'us-east4', 'us-west1', 'us-west2', 'us-west3', 'us-west4', 'us-central1']`.
+
+        Examples:
+        ```json
+        "us-west2"
+        ```
+
+      - **`resource`** *(string)*
+      - **`service`** *(string)*
+      - **`zone`** *(string)*: GCP Zone.
+
+        Examples:
 <!-- ARTIFACTS:END -->
 
-<!-- CONTRIBUTING:START -->
+</details>
 
 ## Contributing
+
+<!-- CONTRIBUTING:START -->
 
 ### Bug Reports & Feature Requests
 
@@ -118,6 +285,7 @@ Please connect with us!
 [![LinkedIn][linkedin_shield]][linkedin_url]
 [![Twitter][twitter_shield]][twitter_url]
 [![YouTube][youtube_shield]][youtube_url]
+[![Reddit][reddit_shield]][reddit_url]
 
 <!-- markdownlint-disable -->
 
