@@ -1,7 +1,7 @@
 schema: draft-07
 name: gcp-global-network
 description: "A global private isolated virtual network that provides managed networking functionality for your Google Cloud Platform (GCP) resources."
-ref: github.com/massdriver-cloud/gcp-global-network
+source_url: github.com/massdriver-cloud/gcp-global-network
 access: "public"
 type: bundle
 
