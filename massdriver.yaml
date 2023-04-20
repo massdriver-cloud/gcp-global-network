@@ -2,7 +2,7 @@ schema: draft-07
 name: gcp-global-network
 description: "A global private isolated virtual network that provides managed networking functionality for your Google Cloud Platform (GCP) resources."
 source_url: github.com/massdriver-cloud/gcp-global-network
-access: "public"
+access: public
 type: infrastructure
 
 params:
@@ -10,6 +10,9 @@ params:
     - __name: Private
       private_services_access_cidr: "10.127.0.0/17"
       private_service_connect_ip: "10.127.255.255"
+    - __name: Wizard
+      private_services_access_cidr: "10.0.0.0/17"
+      private_service_connect_ip: "10.0.255.255"
   required:
     - private_services_access_cidr
     - private_service_connect_ip
@@ -42,11 +45,3 @@ artifacts:
 ui:
   ui:order:
     - "*"
-  ## set top level ui:wiget
-  # secret_key:
-  #    ui:widget: "password"
-  ## Set key in an array of objects
-  # secrets:
-  #   items:
-  #     mdKeyId:
-  #       ui:widget: "hidden"
