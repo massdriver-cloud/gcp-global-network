@@ -11,8 +11,8 @@ params:
       private_services_access_cidr: "10.127.0.0/17"
       private_service_connect_ip: "10.127.255.255"
     - __name: Wizard
-      private_services_access_cidr: "10.0.0.0/17"
-      private_service_connect_ip: "10.0.255.255"
+      private_services_access_cidr: "10.127.0.0/17"
+      private_service_connect_ip: "10.127.255.255"
   required:
     - private_services_access_cidr
     - private_service_connect_ip
