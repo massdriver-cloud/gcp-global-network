@@ -4,5 +4,6 @@ module "apis" {
     "cloudresourcemanager.googleapis.com",
     "compute.googleapis.com",
     "servicenetworking.googleapis.com",
+    "serviceusage.googleapis.com"
   ]
 }
