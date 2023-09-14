@@ -92,6 +92,14 @@ Form input parameters for configuring a bundle for deployment.
   }
   ```
 
+  ```json
+  {
+      "__name": "Wizard",
+      "private_service_connect_ip": "10.127.255.255",
+      "private_services_access_cidr": "10.127.0.0/17"
+  }
+  ```
+
 <!-- PARAMS:END -->
 
 </details>
@@ -171,18 +179,37 @@ Connections from other bundles that this bundle depends on.
   - **`specs`** *(object)*
     - **`gcp`** *(object)*: .
       - **`project`** *(string)*
-      - **`region`** *(string)*: GCP region. Must be one of: `['us-east1', 'us-east4', 'us-west1', 'us-west2', 'us-west3', 'us-west4', 'us-central1']`.
+      - **`region`** *(string)*: The GCP region to provision resources in.
 
         Examples:
+        ```json
+        "us-east1"
+        ```
+
+        ```json
+        "us-east4"
+        ```
+
+        ```json
+        "us-west1"
+        ```
+
         ```json
         "us-west2"
         ```
 
-      - **`resource`** *(string)*
-      - **`service`** *(string)*
-      - **`zone`** *(string)*: GCP Zone.
+        ```json
+        "us-west3"
+        ```
 
-        Examples:
+        ```json
+        "us-west4"
+        ```
+
+        ```json
+        "us-central1"
+        ```
+
 <!-- CONNECTIONS:END -->
 
 </details>
@@ -243,18 +270,37 @@ Resources created by this bundle that can be connected to other bundles.
   - **`specs`** *(object)*
     - **`gcp`** *(object)*: .
       - **`project`** *(string)*
-      - **`region`** *(string)*: GCP region. Must be one of: `['us-east1', 'us-east4', 'us-west1', 'us-west2', 'us-west3', 'us-west4', 'us-central1']`.
+      - **`region`** *(string)*: The GCP region to provision resources in.
 
         Examples:
+        ```json
+        "us-east1"
+        ```
+
+        ```json
+        "us-east4"
+        ```
+
+        ```json
+        "us-west1"
+        ```
+
         ```json
         "us-west2"
         ```
 
-      - **`resource`** *(string)*
-      - **`service`** *(string)*
-      - **`zone`** *(string)*: GCP Zone.
+        ```json
+        "us-west3"
+        ```
 
-        Examples:
+        ```json
+        "us-west4"
+        ```
+
+        ```json
+        "us-central1"
+        ```
+
 <!-- ARTIFACTS:END -->
 
 </details>
