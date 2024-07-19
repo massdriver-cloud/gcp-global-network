@@ -1,5 +1,5 @@
 module "apis" {
-  source = "github.com/massdriver-cloud/terraform-modules//gcp-enable-apis?ref=c336d59"
+  source = "github.com/massdriver-cloud/terraform-modules//gcp-enable-apis?ref=a1b2019"
   services = [
     "cloudresourcemanager.googleapis.com",
     "compute.googleapis.com",
