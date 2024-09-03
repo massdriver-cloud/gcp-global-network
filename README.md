@@ -17,7 +17,7 @@ A global private isolated virtual network that provides managed networking funct
 
 ## Design
 
-For detailed information, check out our [Operator Guide](operator.mdx) for this bundle.
+For detailed information, check out our [Operator Guide](operator.md) for this bundle.
 
 ## Usage
 
