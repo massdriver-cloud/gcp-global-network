@@ -8,6 +8,7 @@ Google Cloud's Virtual Private Cloud (VPC) Network is a highly customizable glob
 2. **IP Address Allocation:** Specific IP addresses are reserved for private service connect and private services access to ensure secure and efficient use of Google Cloud services.
 3. **Dependency Management:** The Terraform module ensures that required APIs are enabled and properly set up before configuring the VPC, addressing any dependency issues.
 4. **Service Access:** The VPC network is designed to support private service access, allowing you to communicate internally without relying on public IP addresses.
+5. **Private Service Connect:** Private Service Connect improves security by allowing you to access GCP APIs across VPCs without traversing the public Internet.
 
 ### Runbook
 
