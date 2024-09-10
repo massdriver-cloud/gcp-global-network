@@ -37,51 +37,8 @@ Form input parameters for configuring a bundle for deployment.
 <summary>View</summary>
 
 <!-- PARAMS:START -->
-## Properties
 
-- **`private_service_connect_ip`** *(string)*: Internal IP address to use for accessing Google APIs, such as CloudFunctions, GCR or Cloud Storage, privately instead of over the internet via public IPs. This IP cannot conflict with any existing subnets or peered networks. More info: https://cloud.google.com/vpc/docs/configure-private-service-connect-apis. Default: `10.127.255.255`.
-
-  Examples:
-  ```json
-  "0.0.0.0"
-  ```
-
-  ```json
-  "8.8.8.8"
-  ```
-
-  ```json
-  "127.0.0.1"
-  ```
-
-- **`private_services_access_cidr`** *(string)*: CIDR range to deploy GCP services to. This range cannot be used for any other purpose and cannot conflict with existing subnets or peered networks. This range is used by Google to deploy services like MemoryStore and CloudSQL without requiring individual peering connections per instance. More info: https://cloud.google.com/vpc/docs/private-services-access. Default: `10.127.0.0/17`.
-
-  Examples:
-  ```json
-  "10.100.0.0/16"
-  ```
-
-  ```json
-  "192.24.12.0/22"
-  ```
-
-## Examples
-
-  ```json
-  {
-      "__name": "Private",
-      "private_service_connect_ip": "10.127.255.255",
-      "private_services_access_cidr": "10.127.0.0/17"
-  }
-  ```
-
-  ```json
-  {
-      "__name": "Wizard",
-      "private_service_connect_ip": "10.127.255.255",
-      "private_services_access_cidr": "10.127.0.0/17"
-  }
-  ```
+**Params coming soon**
 
 <!-- PARAMS:END -->
 
@@ -95,103 +52,8 @@ Connections from other bundles that this bundle depends on.
 <summary>View</summary>
 
 <!-- CONNECTIONS:START -->
-## Properties
 
-- **`gcp_authentication`** *(object)*: GCP Service Account. Cannot contain additional properties.
-  - **`data`** *(object)*
-    - **`auth_provider_x509_cert_url`** *(string)*: Auth Provider x509 Certificate URL. Default: `https://www.googleapis.com/oauth2/v1/certs`.
-
-      Examples:
-      ```json
-      "https://example.com/some/path"
-      ```
-
-      ```json
-      "https://massdriver.cloud"
-      ```
-
-    - **`auth_uri`** *(string)*: Auth URI. Default: `https://accounts.google.com/o/oauth2/auth`.
-
-      Examples:
-      ```json
-      "https://example.com/some/path"
-      ```
-
-      ```json
-      "https://massdriver.cloud"
-      ```
-
-    - **`client_email`** *(string)*: Service Account Email.
-
-      Examples:
-      ```json
-      "jimmy@massdriver.cloud"
-      ```
-
-      ```json
-      "service-account-y@gmail.com"
-      ```
-
-    - **`client_id`** *(string)*: .
-    - **`client_x509_cert_url`** *(string)*: Client x509 Certificate URL.
-
-      Examples:
-      ```json
-      "https://example.com/some/path"
-      ```
-
-      ```json
-      "https://massdriver.cloud"
-      ```
-
-    - **`private_key`** *(string)*: .
-    - **`private_key_id`** *(string)*: .
-    - **`project_id`** *(string)*: .
-    - **`token_uri`** *(string)*: Token URI. Default: `https://oauth2.googleapis.com/token`.
-
-      Examples:
-      ```json
-      "https://example.com/some/path"
-      ```
-
-      ```json
-      "https://massdriver.cloud"
-      ```
-
-    - **`type`** *(string)*: . Default: `service_account`.
-  - **`specs`** *(object)*
-    - **`gcp`** *(object)*: .
-      - **`project`** *(string)*
-      - **`region`** *(string)*: The GCP region to provision resources in.
-
-        Examples:
-        ```json
-        "us-east1"
-        ```
-
-        ```json
-        "us-east4"
-        ```
-
-        ```json
-        "us-west1"
-        ```
-
-        ```json
-        "us-west2"
-        ```
-
-        ```json
-        "us-west3"
-        ```
-
-        ```json
-        "us-west4"
-        ```
-
-        ```json
-        "us-central1"
-        ```
+**Connections coming soon**
 
 <!-- CONNECTIONS:END -->
 
@@ -205,84 +67,8 @@ Resources created by this bundle that can be connected to other bundles.
 <summary>View</summary>
 
 <!-- ARTIFACTS:START -->
-## Properties
 
-- **`network`** *(object)*: . Cannot contain additional properties.
-  - **`data`** *(object)*
-    - **`grn`** *(string)*: GCP Resource Name (GRN).
-
-      Examples:
-      ```json
-      "projects/my-project/global/networks/my-global-network"
-      ```
-
-      ```json
-      "projects/my-project/regions/us-west2/subnetworks/my-subnetwork"
-      ```
-
-      ```json
-      "projects/my-project/topics/my-pubsub-topic"
-      ```
-
-      ```json
-      "projects/my-project/subscriptions/my-pubsub-subscription"
-      ```
-
-      ```json
-      "projects/my-project/locations/us-west2/instances/my-redis-instance"
-      ```
-
-      ```json
-      "projects/my-project/locations/us-west2/clusters/my-gke-cluster"
-      ```
-
-    - **`private_service_connect_ip`** *(string)*: IP address of the Private Service Connect endpoint.
-    - **`private_services_access`** *(object)*
-      - **`cidr`** *(string)*: CIDR range of the Private Services Access block.
-
-        Examples:
-        ```json
-        "10.100.0.0/16"
-        ```
-
-        ```json
-        "192.24.12.0/22"
-        ```
-
-      - **`name`** *(string)*: Name of the Private Services Access block.
-  - **`specs`** *(object)*
-    - **`gcp`** *(object)*: .
-      - **`project`** *(string)*
-      - **`region`** *(string)*: The GCP region to provision resources in.
-
-        Examples:
-        ```json
-        "us-east1"
-        ```
-
-        ```json
-        "us-east4"
-        ```
-
-        ```json
-        "us-west1"
-        ```
-
-        ```json
-        "us-west2"
-        ```
-
-        ```json
-        "us-west3"
-        ```
-
-        ```json
-        "us-west4"
-        ```
-
-        ```json
-        "us-central1"
-        ```
+**Artifacts coming soon**
 
 <!-- ARTIFACTS:END -->
 
