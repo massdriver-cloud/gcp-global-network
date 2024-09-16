@@ -4,7 +4,7 @@ resource "google_compute_network" "main" {
   auto_create_subnetworks = false
 
   depends_on = [
-    module.apis
+    google_project_service.main
   ]
 }
 
@@ -26,7 +26,7 @@ resource "google_compute_global_forwarding_rule" "private_service_connect" {
   load_balancing_scheme = ""
 
   depends_on = [
-    module.apis
+    google_project_service.main
   ]
 }
 
