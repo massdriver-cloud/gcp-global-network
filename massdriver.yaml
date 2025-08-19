@@ -3,7 +3,6 @@ name: gcp-global-network
 version: 1.0.0
 description: A global private isolated virtual network that provides managed networking functionality for your Google Cloud Platform (GCP) resources.
 source_url: https://github.com/massdriver-cloud/gcp-global-network
-type: application
 params:
   examples:
   - __name: Private
