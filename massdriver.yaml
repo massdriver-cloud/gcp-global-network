@@ -1,47 +1,48 @@
 schema: draft-07
 name: gcp-global-network
-description: "A global private isolated virtual network that provides managed networking functionality for your Google Cloud Platform (GCP) resources."
-source_url: github.com/massdriver-cloud/gcp-global-network
-access: public
-type: infrastructure
-
+version: 1.0.0
+description: A global private isolated virtual network that provides managed networking functionality for your Google Cloud Platform (GCP) resources.
+source_url: https://github.com/massdriver-cloud/gcp-global-network
 params:
   examples:
-    - __name: Private
-      private_services_access_cidr: "10.127.0.0/17"
-      private_service_connect_ip: "10.127.255.255"
-    - __name: Wizard
-      private_services_access_cidr: "10.127.0.0/17"
-      private_service_connect_ip: "10.127.255.255"
+  - __name: Private
+    private_services_access_cidr: 10.127.0.0/17
+    private_service_connect_ip: 10.127.255.255
+  - __name: Wizard
+    private_services_access_cidr: 10.127.0.0/17
+    private_service_connect_ip: 10.127.255.255
   required:
-    - private_services_access_cidr
-    - private_service_connect_ip
+  - private_services_access_cidr
+  - private_service_connect_ip
   properties:
     private_services_access_cidr:
-      $ref: https://raw.githubusercontent.com/massdriver-cloud/artifact-definitions/main/definitions/types/cidr.json
+      "$ref": https://raw.githubusercontent.com/massdriver-cloud/artifact-definitions/main/definitions/types/cidr.json
       title: Private Services Access CIDR
-      description: "CIDR range to deploy GCP services to. This range cannot be used for any other purpose and cannot conflict with existing subnets or peered networks. This range is used by Google to deploy services like MemoryStore and CloudSQL without requiring individual peering connections per instance. More info: https://cloud.google.com/vpc/docs/private-services-access"
-      default: "10.127.0.0/17"
+      description: 'CIDR range to deploy GCP services to. This range cannot be used for any other purpose and cannot conflict with existing subnets or peered networks. This range is used by Google to deploy services like MemoryStore and CloudSQL without requiring individual peering connections per instance. More info: https://cloud.google.com/vpc/docs/private-services-access'
+      default: 10.127.0.0/17
     private_service_connect_ip:
-      $ref: https://raw.githubusercontent.com/massdriver-cloud/artifact-definitions/main/definitions/types/ip-address.json
+      "$ref": https://raw.githubusercontent.com/massdriver-cloud/artifact-definitions/main/definitions/types/ip-address.json
       title: Private Service Connect IP Address
-      description: "Internal IP address to use for accessing Google APIs, such as CloudFunctions, GCR or Cloud Storage, privately instead of over the internet via public IPs. This IP cannot conflict with any existing subnets or peered networks. More info: https://cloud.google.com/vpc/docs/configure-private-service-connect-apis"
-      default: "10.127.255.255"
-
+      description: 'Internal IP address to use for accessing Google APIs, such as CloudFunctions, GCR or Cloud Storage, privately instead of over the internet via public IPs. This IP cannot conflict with any existing subnets or peered networks. More info: https://cloud.google.com/vpc/docs/configure-private-service-connect-apis'
+      default: 10.127.255.255
 connections:
   required:
-    - gcp_authentication
+  - gcp_authentication
   properties:
     gcp_authentication:
-      $ref: massdriver/gcp-service-account
-
+      "$ref": massdriver/gcp-service-account
 artifacts:
   required:
-    - network
+  - network
   properties:
     network:
-      $ref: massdriver/gcp-global-network
-
+      "$ref": massdriver/gcp-global-network
 ui:
   ui:order:
-    - "*"
+  - "*"
+steps:
+- path: src
+  provisioner: opentofu
+  config:
+    checkov:
+      enable: true
