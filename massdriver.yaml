@@ -30,13 +30,13 @@ connections:
   - gcp_authentication
   properties:
     gcp_authentication:
-      "$ref": massdriver/gcp-service-account
+      "$ref": gcp-service-account
 artifacts:
   required:
   - network
   properties:
     network:
-      "$ref": massdriver/gcp-global-network
+      "$ref": gcp-global-network
 ui:
   ui:order:
   - "*"
